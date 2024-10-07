@@ -1,0 +1,68 @@
+---
+title: "hw.compas: a data confidentiality problem"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+# Background
+In criminology **recidivism** refers to crimes committed by repeat offenders, individuals who repeat the same crime after a prior conviction.  COMPAS is a software package which models the likelihood of a defendant becoming a recidivist.  (The fairness of the COMPAS recidivism model has been the subject of research and discussion.  See https://en.wikipedia.org/wiki/COMPAS_(software) for an overview.) COMPAS was developed in the private sector but it has been used by courts to guide sentencing decisions.  
+
+The file **compas.violent.csv** contains COMPAS risk scores along with demographics and criminal history for defendants in Broward County, Florida during 2013 and 2014. This is sensitive information which could be used to identify specific individuals, so these data are kept behind a security firewall.  When other organizations request the data for adminstrative purposes or for research, the Broward Count Court modifies the file to protect the identity and other confidential information of the individuals in the file. 
+
+In this homework you'll make the changes required to produce the modified file as described in the steps below.  Use the pipe and `dplyr` wherever you can.  
+
+**Before you submit, reformat this notebook:**  Add a table of contents with numbered sections.  Format each question as a section with a short title.  The instructions for each step should appear as the body of the section.  Add a bibliography with citations for R itself and for any packages that you use.  Include a citation for the Wikipedia article about COMPAS.  Add more citations if you want.  
+
+(@) Install packages you will use.  Include at least these three:  `dplyr, magrittr, lubridate`.  
+```{r}
+###
+```
+
+(@) Import the .csv file and call the data.frame `recid.dat`
+```{r}
+```
+
+(@) Check the size of the data.frame and display a few rows.  
+```{r}
+###
+```
+
+
+(@) Make a copy of `recid.dat` and call it `external.dat`.  The following steps ask you to modify `external.dat` to protect the confidential information of the subject individuals.  
+```{r}
+###
+```
+(@) How many distinct individuals appear in `recid.dat`? 
+```{r}
+###
+```
+(@) Assign a unique integer to identify each individual.  Store these identification numbers in a new column called `DEFID`.  Add the new column to BOTH `recid.dat` and `external.dat`.  (This is the only modification we will make to `recid.dat`.  Using 1,2,3,... is the easiest way to assign `DEFID`, but there's more to consider:  maybe you want every number to display with the same number of digits; maybe you don't want the order of the ID's to match the alphabetical order of the names; maybe you want to assign the numbers randomly; etc. )
+```{r}
+###
+```
+
+(@) Remove the columns related to names from `external.dat`.    
+```{r}
+###
+```
+(@) Add a column to `external.dat` called `AGECAT` to express age as an ordered categorical variable.  When you're happy with the new column, remove age and date of birth from `external.dat`.   
+```{r}
+###
+```
+(@) Recode the variable `c_charge_degree` in `external.dat` to display the **words** associated with the abbeviations 'M' and 'F'.  We don't have metadata to help us, so you have to think and guess a little to discover the words. 
+```{r}
+###
+```
+(@) In `external.dat`, replace datetime columns `c_jail_in` and `c_jail_out` with column `c_jail_days` (type numeric) containing the duration (in days) of the jail stay for each individual.  Build `c_jail_days` to take strictly positive values.  For example, if an individual is in jail for 3 hours or 13 hours or 23.9 hours, record this as 1 jail day.  If hours in jail = 27, record this as 2 jail days.  
+
+```{r}
+###
+```
+(@) Display the first few rows and the last few rows of  `external.dat`.  
+```{r}
+###
+```
+
+
+
+
